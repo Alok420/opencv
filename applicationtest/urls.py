@@ -22,5 +22,5 @@ urlpatterns = [
     path('show/', views.showAll,name='show'),
     path('convert/<int:id>', views.convert,name='convert'),
     path('delete-all', views.deleteAll,name='deleteall'),
-
+    path('result/', views.processing,name='result'),
 ]

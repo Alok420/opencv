@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+    <title>Result</title>
+    <style>
+        .center {
+            text-align: center;
+        }
+
+        .link {
+            margin: 5px;
+            background-color: darkseagreen;
+            color: blue;
+            padding: 5px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <table class="table">
+            <tr>
+                <th>Source Image</th>
+                <th>Color </th>
+                <th>Area</th>
+                <th>Approx mesurement</th>
+            </tr>
+            {% for one in data %}
+            <tr>
+                <td>
+                    <a href="/static/images/{{one.img}}">
+                        <img src="/static/images/{{one.img}}" style="height: 500px; width: 500px;">
+                    </a>
+                </td>
+                <td>
+                    <div style="background-color: rgb{{one.color}}; width:100px; height:100px; padding: 10px;">
+                        {{one.img}}<br>{{one.color}}</div>
+                </td>
+                <td>
+                    Area: {{one.area2}}
+                </td>
+                <td>
+                    Approx points: {{one.biggest2}}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+
+    </div>
+
+</body>
+
+</html>
