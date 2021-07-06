@@ -13,7 +13,7 @@
 </head>
 <body>
 <div class="container">
-
+<a href="/applicationtest/show/">Show uploaded videos</a>
     <form method="post" enctype="multipart/form-data" action="{% url 'form' %}">
         {% csrf_token %}
         <div class="mb-3">
@@ -28,6 +28,7 @@
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+    <a href="/applicationtest/show/">Show uploaded files</a>
 </div>
 
 </body>

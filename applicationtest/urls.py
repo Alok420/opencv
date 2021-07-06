@@ -20,5 +20,7 @@ urlpatterns = [
     path('hi/', views.hiHello),
     path('index/', views.index,name='form'),
     path('show/', views.showAll,name='show'),
+    path('convert/<int:id>', views.convert,name='convert'),
+    path('delete-all', views.deleteAll,name='deleteall'),
 
 ]

@@ -13,12 +13,14 @@
 <body>
 <div class="container">
     <div class="container">
+        <a href="/applicationtest/index/">Add more file</a>
         <table class="table">
             <thead>
             <tr>
                 <th>SQ</th>
                 <th>File name</th>
                 <th>File path</th>
+                <th>Action</th>
             </tr>
             </thead>
             <tbody>
@@ -27,6 +29,7 @@
                 <td>{{forloop.counter}}</td>
                 <td>{{data.name}}</td>
                 <td><a href="{{data.files.url}}"> {{data.files}}</a></td>
+                <td><a href="{%  url 'convert' forloop.counter %}">Convert to frame</a></td>
             </tr>
             {% endfor %}
             </tbody>
