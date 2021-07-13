@@ -31,20 +31,34 @@
         <table class="table">
             <tr>
                 <th>Source Image</th>
+                <th>Contour Image</th>
                 <th>Color </th>
-                <th>Area</th>
-                <th>Approx mesurement</th>
+                <th>Peri </th>
+                <th>Dia </th>
+                <th>Area </th>
+                <th>Approx mesurement </th>
             </tr>
             {% for one in data %}
             <tr>
                 <td>
                     <a href="/static/images/{{one.img}}">
-                        <img src="/static/images/{{one.img}}" style="height: 500px; width: 500px;">
+                        <img src="/static/images/{{one.img}}" style="height: 100px; width: 100px;">
                     </a>
                 </td>
                 <td>
+                    <a href="/static/drawn_img/{{one.img}}">
+                        <img src="/static/drawn_img/{{one.img}}" style="height: 100px; width: 100px;">
+                    </a>
+                </td>
+                <td>
+                    Peri: {{one.peri}}
+                </td>
+                <td>
+                    Dia: {{one.dia}}
+                </td>
+                <td>
                     <div style="background-color: rgb{{one.color}}; width:100px; height:100px; padding: 10px;">
-                        {{one.img}}<br>{{one.color}}</div>
+                        <span style="background-color: white;">{{one.img}}<br>{{one.color}}</span></div>
                 </td>
                 <td>
                     Area: {{one.area2}}

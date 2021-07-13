@@ -78,37 +78,47 @@ def processing(request):
     context = []
     for dir in dirs:
         scale = 1
-        paper_width = 210*scale
-        paper_heaight = 297*scale
+        paper_width = 600
+        paper_heaight = 800
         path = "applicationtest/static/images/"+dir
         util.getDirFiles
         img = cv.imread(path)
-        resized = cv.resize(img, (500, 500), fx=0.5, fy=0.5)
-        img, gcontour = util.getCountours(
-            resized, showCanny=True, draw=False, minArea=0, filter=4)
+        resized = cv.resize(img, (img.shape[1],img.shape[0]))
+        img, gcontour = util.getCountours(resized, showCanny=False, draw=True, minArea=0, filter=4)
         if len(gcontour) != 0:
             biggest = gcontour[0][2]
             area = gcontour[0][1]
-            warp_image = util.warpImage(
-                img, biggest, paper_width, paper_heaight)
-            img2, gcontour2 = util.getCountours(
-                warp_image, showCanny=False, draw=False, minArea=0, filter=12)
-            print("Gcontours2 ", len(gcontour2))
+            print("first ",area)
+            warp_image=util.warpImage(img,biggest,img.shape[1],img.shape[0])
+            img2, gcontour2 = util.getCountours(warp_image, showCanny=False, draw=True, minArea=0, filter=12,isSecondRound=True,isSorted=True)
+            screenshot_name = 'applicationtest/static/drawn_img/'+dir    
+            cv.imwrite(screenshot_name, img2)
             if len(gcontour2) != 0:
-                biggest2 = gcontour2[0][2]
-                area2 = gcontour2[0][1]
-                color = gcontour2[0][5]
-                # print("Area biggest ", area2)
-                # print("circle biggest", biggest2)
-                # print("Color biggest", color)
-        subdata = {
-            "biggest2": biggest2,
-            "area2": area2,
-            "color": color,
-            "img": dir
-        }
-        context.append(subdata)
-    context2={
-        "data":context
+                a=0
+                biggest2 = gcontour2[1][2]
+                area2 = gcontour2[1][1]
+                color=gcontour2[1][5]
+                peri=gcontour2[1][6]
+                dia=peri/3.14
+                for gc in gcontour2:
+                    a+=1
+                    biggest2 = gc[2]
+                    # area2 = str(gc[0])+", "+str(gc[1])+", "+str(gc[3])
+                    # color=str(gc[5][0])+str(gc[5][1]),str(gc[5][1])
+                    # col=','.join(color)
+                    # col="_"+str(a)+"_\t\t\t"+col
+                    # print(util.colored(color[0],color[1],color[2],area2))
+                    # print(util.colored(color[0],color[1],color[2],col))
+            subdata = {
+                "biggest2": biggest2,
+                "area2": area2,
+                "peri": peri,
+                "dia": dia,
+                "color": color,
+                "img": dir
+            }
+            context.append(subdata)
+    context2 = {
+        "data": context
     }
     return render(request, "result.html", context2)

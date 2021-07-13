@@ -15,7 +15,8 @@
         .center {
             text-align: center;
         }
-        .link{
+
+        .link {
             margin: 5px;
             background-color: darkseagreen;
             color: blue;
@@ -27,18 +28,18 @@
 
 <body>
     <div class="container">
-
+        
         {% if obj %}
         <h2 class="center">Video to frame conversion is processing</h2>
         {% endif %}
         {% if listpath %}
         <h1 class="center">All frames of video</h1>
         <div>
-            <a  class="link" href="{% url 'result' %}">Start processing</a>
-            <a  class="link" href="{% url 'deleteall' %}">Delete all and regenerate</a>
+            <a class="link" href="{% url 'result' %}">Start processing</a>
+            <a class="link" href="{% url 'deleteall' %}">Delete all and regenerate</a>
         </div>
         <div class="row">
-        {% for data in listpath %}
+            {% for data in listpath %}
 
             <div class="col-sm-2">
                 <div class="p-2">

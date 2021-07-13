@@ -24,3 +24,5 @@ urlpatterns = [
     path('delete-all', views.deleteAll,name='deleteall'),
     path('result/', views.processing,name='result'),
 ]
+# PROJECT_ROOT+"/media/images/"+dir
+# PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
